@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Color on Click</title>
+    <style>
+        
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<ol id="myList">
+    <li onclick="changeColor(this)">Item 1</li>
+    <li onclick="changeColor(this)">Item 2</li>
+    <li onclick="changeColor(this)">Item 3</li>
+    
+</ol>
+
+<script>
+    function changeColor(element) {
+        
+        var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        
+        
+        element.style.color = randomColor;
+    }
+</script>
+
+</body>
+</html>

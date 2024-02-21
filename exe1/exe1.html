@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu du chiffre caché</title>
+</head>
+<body>
+
+<script>
+function jouerAuJeu() {
+  // Demander le niveau de difficulté
+  var niveauDifficulte = prompt("Choisissez le niveau de difficulté : Facile, Intermédiaire, Difficile").toLowerCase();
+
+  // Définir le nombre maximum en fonction du niveau de difficulté
+  var nombreMax;
+  var nombreEssais;
+
+  switch (niveauDifficulte) {
+    case "facile":
+      nombreMax = 10;
+      nombreEssais = 3;
+      break;
+    case "intermédiaire":
+      nombreMax = 50;
+      nombreEssais = 5;
+      break;
+    case "difficile":
+      nombreMax = 100;
+      nombreEssais = 7;
+      break;
+    default:
+      alert("Niveau de difficulté non valide. Le jeu va être relancé.");
+      jouerAuJeu();
+      return;
+  }
+
+  // Générer un nombre aléatoire
+  var nombreSecret = Math.floor(Math.random() * nombreMax) + 1;
+
+  var tentative;
+  var trouve = false;
+
+  for (var i = 1; i <= nombreEssais; i++) {
+    // Demander une tentative à l'utilisateur
+    tentative = parseInt(prompt("Tentative " + i + "/" + nombreEssais + "\nDevinez le nombre entre 1 et " + nombreMax));
+
+    // Vérifier la tentative
+    if (tentative === nombreSecret) {
+      trouve = true;
+      alert("Félicitations ! Vous avez trouvé le nombre secret : " + nombreSecret);
+      break;
+    } else {
+      alert("Désolé, ce n'est pas le bon nombre. Essayez à nouveau.");
+    }
+  }
+
+  if (!trouve) {
+    alert("Dommage ! Le nombre secret était : " + nombreSecret);
+  }
+
+  // Demander si le joueur veut rejouer
+  var rejouer = confirm("Voulez-vous rejouer ?");
+  if (rejouer) {
+    jouerAuJeu();
+  } else {
+    alert("Merci d'avoir joué. Au revoir !");
+  }
+}
+
+// Lancer le jeu au chargement de la page
+jouerAuJeu();
+</script>
+
+</body>
+</html>
